@@ -1,0 +1,2 @@
+type ManualReply = variant { Ok : nat64; Err : text };
+service : () -> { getBalance : (text) -> (ManualReply) }

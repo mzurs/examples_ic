@@ -1,0 +1,30 @@
+{
+  "canisters": {
+    "ecdsa": {
+      "type": "custom",
+      "build": "npx azle ecdsa ",
+      "root": "canisters/ecdsa",
+      "ts": "canisters/ecdsa/ecdsa.ts",
+      "candid": "canisters/ecdsa/ecdsa.did",
+      "wasm": ".azle/ecdsa/ecdsa.wasm.gz",
+      "declarations": {
+        "output": "test/dfx_generated/ecdsa",
+
+        "node_compatibility": true
+      }
+    },
+    "token": {
+      "type": "custom",
+      "build": "npx azle token ",
+      "root": "canisters/token",
+      "ts": "canisters/token/token.ts",
+      "candid": "canisters/token/token.did",
+      "wasm": ".azle/token/token.wasm.gz",
+      "declarations": {
+        "output": "test/dfx_generated/token",
+
+        "node_compatibility": true
+      }
+    }
+  }
+}
