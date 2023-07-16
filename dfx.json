@@ -1,5 +1,16 @@
 {
   "canisters": {
+    "ledger": {
+      "type": "custom",
+      "wasm": "ledger_canister.wasm",
+      "candid": "ledger.did",
+      "remote": {
+        "candid": "ledger.did",
+        "id": {
+          "ic": "bkyz2-fmaaa-aaaaa-qaaaq-cai"
+        }
+      }
+    },
     "ecdsa": {
       "type": "custom",
       "build": "npx azle ecdsa ",
@@ -25,6 +36,22 @@
 
         "node_compatibility": true
       }
+    },
+    "ckbtc_ledger": {
+      "type": "custom",
+      "candid": "icrc1.public.did",
+      "wasm": "icrc1.wasm",
+      "remote": {
+        "candid": "icrc1.public.did",
+        "id": {
+          "ic": "mxzaz-hqaaa-aaaar-qaada-cai"
+        }
+      }
+    }
+  },
+  "defaults": {
+    "replica": {
+      "subnet_type": "system"
     }
   }
 }
