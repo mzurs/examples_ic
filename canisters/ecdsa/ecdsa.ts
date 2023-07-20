@@ -5,16 +5,16 @@ import { Keccak } from "sha3";
 import RLP from "rlp";
 import encodeUtf8 from "encode-utf8";
 
-
 $update;
 export async function publicKey(): Promise<
   Result<Record<{ publicKey: string }>, string>
 > {
   const caller = ic.caller().toUint8Array();
+  const canisterCaller = ic.id().toUint8Array();
   const publicKeyResult = await managementCanister
     .ecdsa_public_key({
-      canister_id: Opt.None,
-      derivation_path: [caller],
+      canister_id: Opt.Some(ic.id()),
+      derivation_path: [canisterCaller,caller],
       key_id: { curve: { secp256k1: null }, name: "dfx_test_key" },
     })
     .call();
@@ -22,9 +22,7 @@ export async function publicKey(): Promise<
   return match(publicKeyResult, {
     Ok: (ecdsaPublicKeyResult) => ({
       Ok: {
-        publicKey: (
-        toHexString(ecdsaPublicKeyResult.public_key)
-        ),
+        publicKey: toHexString(ecdsaPublicKeyResult.public_key),
       },
     }),
     Err: (err) => ({ Err: err }),

@@ -6,9 +6,7 @@ type ManualReply_1 = variant { Ok : _InlineSignReturnTypeTypeArg0; Err : text };
 type _InlinePublicKeyReturnTypeTypeArg0 = record { publicKey : text };
 type _InlineSignReturnTypeTypeArg0 = record { signature : text };
 service : () -> {
-  address : (text) -> (text);
   encodeRlp : () -> (text) query;
-  getETHAddress : (text) -> (text);
   publicKey : () -> (ManualReply);
   sign : () -> (ManualReply_1);
 }
