@@ -11,7 +11,8 @@ type ManualReply = record {
   headers : vec HttpHeader;
 };
 service : () -> {
-  xkcd : () -> (ManualReply);
+  deathAPI : () -> (ManualReply);
+  inflationPoints : () -> (ManualReply);
   xkcdRaw : () -> (ManualReply);
   xkcdTransform : (HttpTransformArgs) -> (HttpResponse) query;
 }
