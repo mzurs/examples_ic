@@ -19,24 +19,50 @@
       "candid": "canisters/basic_bitcoin/src/index.did",
       "wasm": ".azle/basic_bitcoin/basic_bitcoin.wasm.gz",
       "declarations": {
-          "output": "test/dfx_generated/basic_bitcoin",
-          "node_compatibility": true
+        "output": "test/dfx_generated/basic_bitcoin",
+        "node_compatibility": true
       },
       "opt_level": "1"
-  },
-  "https": {
-    "type": "custom",
-    "build": "npx azle https ",
-    "root": "canisters/https",
-    "ts": "canisters/https/https.ts",
-    "candid": "canisters/https/https.did",
-    "wasm": ".azle/https/https.wasm.gz",
-    "declarations": {
-      "output": "test/dfx_generated/https",
+    },
+    "https": {
+      "type": "custom",
+      "build": "npx azle https ",
+      "root": "canisters/https",
+      "ts": "canisters/https/https.ts",
+      "candid": "canisters/https/https.did",
+      "wasm": ".azle/https/https.wasm.gz",
+      "declarations": {
+        "output": "test/dfx_generated/https",
 
-      "node_compatibility": true
-    }
-  },
+        "node_compatibility": true
+      }
+    },
+    "create_canister": {
+      "type": "custom",
+      "build": "npx azle create_canister ",
+      "root": "canisters/create_canister",
+      "ts": "canisters/create_canister/create_canister.ts",
+      "candid": "canisters/create_canister/create_canister.did",
+      "wasm": ".azle/create_canister/create_canister.wasm.gz",
+      "declarations": {
+        "output": "test/dfx_generated/create_canister",
+
+        "node_compatibility": true
+      }
+    },
+    "timers":{
+      "type": "custom",
+      "build": "npx azle timers ",
+      "root": "canisters/timers",
+      "ts": "canisters/timers/timers.ts",
+      "candid": "canisters/timers/timers.did",
+      "wasm": ".azle/timers/timers.wasm.gz",
+      "declarations": {
+        "output": "test/dfx_generated/timers",
+
+        "node_compatibility": true
+      }
+    },
     "ckbtc": {
       "type": "custom",
       "build": "npx azle ckbtc ",
