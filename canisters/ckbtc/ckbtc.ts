@@ -13,11 +13,12 @@ import {
   Variant,
   Vec,
   blob,
+  $init,
 } from "azle";
 import {
   ICRCAccount,
   ICRC,
-  ICRCTransferArgs,
+  ICRCTransferArgs, 
   ICRCTransferError,
   ICRCValue,
 } from "azle/canisters/icrc";
@@ -25,8 +26,16 @@ import {
   binaryAddressFromPrincipal,
   hexAddressFromPrincipal,
 } from "azle/canisters/ledger/address";
-const icrc = new ICRC(Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"));
 
+let CKBTC_PRINCIPAL:Principal;
+
+const icrc = new ICRC(Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai"));
+$init;
+export function init(_CKBTC_PRINCIPAL: string): void {
+
+  CKBTC_PRINCIPAL =Principal.fromText( _CKBTC_PRINCIPAL);
+
+}
 $query;
 export async function icrc1_metadata(): Promise<Vec<Tuple<[text, ICRCValue]>>> {
   const result = await icrc.icrc1_metadata().call();
@@ -169,7 +178,7 @@ $query;
 export async function canisterBalance(): Promise<nat> {
   const to = {
     owner: ic.id(),
-    subaccount:Opt.Some(binaryAddressFromPrincipal(ic.id(), 0)),
+    subaccount: Opt.Some(binaryAddressFromPrincipal(ic.id(), 0)),
   };
   const result = await icrc.icrc1_balance_of(to).call();
 

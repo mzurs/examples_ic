@@ -1,6 +1,7 @@
-import { nat64, Record } from 'azle';
+import { nat32, nat64, Record } from "azle";
 
 export type SendRequest = Record<{
-    destinationAddress: string;
-    amountInSatoshi: nat64;
+  identifier: nat32;
+  destinationAddress: string;
+  amountInSatoshi: nat64;
 }>;

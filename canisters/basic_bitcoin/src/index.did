@@ -9,12 +9,13 @@ type Outpoint = record { txid : vec nat8; vout : nat32 };
 type SendRequest = record {
   amountInSatoshi : nat64;
   destinationAddress : text;
+  identifier : nat32;
 };
 type Utxo = record { height : nat32; value : nat64; outpoint : Outpoint };
 service : (BitcoinNetwork) -> {
   getBalance : (text) -> (nat64);
   getCurrentFeePercentiles : () -> (vec nat64);
-  getP2PKHAddress : () -> (text);
+  getP2PKHAddress : (nat32) -> (text);
   getUtxos : (text) -> (ManualReply);
   send : (SendRequest) -> (text);
 }

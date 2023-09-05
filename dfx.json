@@ -50,7 +50,7 @@
         "node_compatibility": true
       }
     },
-    "timers":{
+    "timers": {
       "type": "custom",
       "build": "npx azle timers ",
       "root": "canisters/timers",
