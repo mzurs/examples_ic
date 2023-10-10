@@ -61,6 +61,19 @@ export async function getBalance(address: string): Promise<nat64> {
   return await bitcoinApi.getBalance(NETWORK, address);
 }
 
+// Returns the balance of the given will identifier
+$update;
+export async function get_balance_by_identifier(
+  identifier: nat32
+): Promise<nat64> {
+  const address = await bitcoinWallet.getP2PKHAddress(NETWORK, KEY_NAME, [
+    getIdentifierBlob(identifier),
+  ]);
+
+  const balance = await bitcoinApi.getBalance(NETWORK, address);
+
+  return balance;
+}
 /// Returns the UTXOs of the given bitcoin address.
 $update;
 export async function getUtxos(address: string): Promise<GetUtxosResult> {
@@ -102,12 +115,44 @@ export async function getP2PKHAddress(identifier: nat32): Promise<string> {
 
 $update;
 export async function send(request: SendRequest): Promise<string> {
+  const fromAddress = await bitcoinWallet.getP2PKHAddress(NETWORK, KEY_NAME, [
+    getIdentifierBlob(request.identifier),
+  ]);
+
+  const totalUtxos = await bitcoinApi.getUtxos(NETWORK, fromAddress);
+
+  const totalUtxosLength = totalUtxos.utxos.length;
+
+  // Get fee percentiles from previous transactions to estimate our own fee.
+  const feePercentiles = await bitcoinApi.getCurrentFeePercentiles(NETWORK);
+
+  const feePerByte =
+    feePercentiles.length === 0
+      ? // There are no fee percentiles. This case can only happen on a regtest
+        // network where there are no non-coinbase transactions. In this case,
+        // we use a default of 2000 millisatoshis/byte (i.e. 2 satoshi/byte)
+        2_000n
+      : // Choose the 50th percentile for sending fees.
+        feePercentiles[49];
+
+  //   Input size (one UTXO): 148 bytes
+  // Output size (one output): 34 bytes
+  // Transaction header size: 8 bytes
+  // Transaction size overhead: 10 bytes (assuming one input and one output)
+
+  const transactionSize = 148n * BigInt(totalUtxosLength) + 34n * 2n + 8n + 10n;
+
+  const totalFee = (BigInt(transactionSize) * feePerByte) / 1000n;
+
+  const balance = await bitcoinApi.getBalance(NETWORK, fromAddress);
+
   const txId = await bitcoinWallet.send(
     NETWORK,
     [getIdentifierBlob(request.identifier)],
     KEY_NAME,
     request.destinationAddress,
-    request.amountInSatoshi
+    balance - totalFee
+    // request.amountInSatoshi
   );
 
   return txId.to_string();
