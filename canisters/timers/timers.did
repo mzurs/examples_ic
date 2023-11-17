@@ -1,4 +1,0 @@
-service : () -> {
-  getVal : () -> (nat32) query;
-  setTimer : (nat64) -> (record { nat64; nat32 });
-}

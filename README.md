@@ -1,1 +1,0 @@
-# Internet Computer Blockchain (IC)
