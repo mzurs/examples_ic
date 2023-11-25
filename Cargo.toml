@@ -1,0 +1,7 @@
+
+
+[workspace]
+
+members = ["rust/counter"]
+exclude = ["typescript", "rust/hello_world"]
+
