@@ -196,6 +196,7 @@ dependencies = [
  "serde_bytes",
 ]
 
+
 [[package]]
 name = "ic-cdk-macros"
 version = "0.8.2"

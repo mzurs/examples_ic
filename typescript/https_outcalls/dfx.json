@@ -1,0 +1,13 @@
+{
+    "canisters": {
+        "https_outcalls": {
+            "type": "custom",
+            "main": "src/index.ts",
+            "candid": "src/index.did",
+            "build": "npx azle https_outcalls",
+            "wasm": ".azle/https_outcalls/https_outcalls.wasm",
+            "gzip": true
+        }
+    }
+}
+
