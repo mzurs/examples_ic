@@ -1,14 +1,25 @@
+mod test;
+
 use candid::types::number::Nat;
 use ic_cdk_macros::{export_candid, query, update};
 use std::cell::RefCell;
 
-thread_local! {
+std::thread_local! {
 
     static COUNTER:RefCell<Nat> = RefCell::new(Nat::from(0 as u32));
 
 }
 
-#[query]
+fn guard_function() -> Result<(), String> {
+    ic_cdk::println!("{}", ic_cdk::caller());
+    if ic_cdk::caller().to_text() == "aaa-aaa" {
+        Ok(())
+    } else {
+        Err(String::from("Unknown Principal Not Allowed"))
+    }
+}
+
+#[query(guard=guard_function)]
 fn get_counts() -> Nat {
     COUNTER.with(|counter: &RefCell<Nat>| (*counter.borrow()).clone())
 }
@@ -16,24 +27,6 @@ fn get_counts() -> Nat {
 #[update]
 fn increment_count() -> () {
     COUNTER.with(|counter: &RefCell<Nat>| *counter.borrow_mut() += 1u32);
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_init() {
-        assert_eq!(get_counts(), Nat::from(0u32));
-    }
-
-    #[test]
-    fn test_inc() {
-        for i in 1..10 {
-            increment_count();
-            assert_eq!(get_counts(), Nat::from(i as u32));
-        }
-    }
 }
 
 export_candid!();

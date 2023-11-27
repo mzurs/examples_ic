@@ -1,5 +1,5 @@
 [workspace]
 
-members = ["rust/counter"]
-exclude = ["typescript"]
+members = ["rust/*"]
+exclude = ["typescript","rust/scripts"]
 
