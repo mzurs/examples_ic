@@ -1,5 +1,10 @@
 [workspace]
-
+resolver = "2"
 members = ["rust/*"]
 exclude = ["typescript","rust/scripts"]
 
+[workspace.dependencies]
+candid = "0.10.0"
+ic-cdk = "0.12.0"
+ic-cdk-macros = "0.8.1"
+ic-stable-structures = "0.6.0"

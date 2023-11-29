@@ -1,0 +1,5 @@
+service : {
+  add_user : (text) -> (opt text);
+  add_user1 : (text) -> (opt text);
+  get_user : (principal) -> (opt text) query;
+}

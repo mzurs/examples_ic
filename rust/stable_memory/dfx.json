@@ -1,0 +1,16 @@
+{
+  "canisters": {
+    "stable_memory": {
+      "candid": "stable_memory.did",
+      "package": "stable_memory",
+      "type": "rust",
+      "declarations": {
+        "bindings": null,
+        "env_override": null,
+        "node_compatibility": true,
+        "output": "declarations/stable_memory"
+      },
+      "optimize": "cycles"
+    }
+  }
+}
