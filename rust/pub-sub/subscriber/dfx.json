@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "canisters": {
+    "subscriber": {
+      "package": "subscriber",
+      "candid": "src/subscriber.did",
+      "type": "rust"
+    }
+  }
+}

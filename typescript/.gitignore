@@ -2,6 +2,8 @@
 .azle
 target/
 
+bitcoin/
+
 node_modules/
 
 declarations

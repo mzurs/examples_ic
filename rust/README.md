@@ -1,7 +1,7 @@
-# Rust Development On IC
+# Rust Development
 
 ### Deploy Locally
 
 ```bash
-./scripts/deploy.sh CANISTER_NAME
+./scripts/deploy.sh NAME
 ```

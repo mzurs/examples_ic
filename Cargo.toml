@@ -1,7 +1,7 @@
 [workspace]
 resolver = "2"
 members = ["rust/*"]
-exclude = ["typescript","rust/scripts"]
+exclude = ["typescript", "rust/scripts"]
 
 [workspace.dependencies]
 candid = "0.10.0"

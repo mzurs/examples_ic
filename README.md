@@ -1,4 +1,4 @@
-# Canisters Development on IC
+<!-- # Example Projects -->
 
 ### Steps to follow
 
@@ -7,5 +7,5 @@
    ```
 
 2. ```bash
-   ./deploy.sh CDK_NAME(rust or typescript) CANISTER_NAME
+   ./deploy.sh CDK_NAME(rust or typescript) NAME
    ```
