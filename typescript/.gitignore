@@ -1,8 +1,8 @@
 .dfx
-.azle
-target/
 
-bitcoin/
+.azle
+
+target/
 
 node_modules/
 

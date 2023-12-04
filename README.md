@@ -1,4 +1,4 @@
-<!-- # Example Projects -->
+# Example Projects
 
 ### Steps to follow
 
