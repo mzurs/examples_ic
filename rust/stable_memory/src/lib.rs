@@ -53,17 +53,5 @@ fn add_user(value: String) -> Option<String> {
     user
 }
 
-#[update]
-fn add_user1(value: String) -> Option<String> {
-    USERS_MAP.with(|val| {
-        val.borrow_mut()
-            .insert(ic_cdk::caller().to_text(), value.to_string())
-    });
-
-    let user: Option<String> =
-        USERS_MAP.with(|value| value.borrow().get(&ic_cdk::caller().to_text()));
-
-    user
-}
 
 export_candid!();
